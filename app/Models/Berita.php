@@ -9,5 +9,5 @@ class Berita extends Model
 {
     use HasFactory;
     protected $table = 'beritas';
-    protected $fillable = ['title', 'slug', 'description'];
+    protected $fillable = ['title', 'slug', 'description', 'image'];
 }

@@ -1,80 +1,41 @@
 @extends('template.main')
 @section('content')
-    {{-- <h1>register member</h1>
-    <form action="{{ route('register.member.proses') }}" method="POST">
-        @csrf
-        <label for="username">username</label>
-        <input type="text" name="username">
-        <label for="no_hp">no hp</label>
-        <input type="number" name="no_hp">
-        <label for="email">email</label>
-        <input type="email" name="email">
-        <label for="password">password</label>
-        <input type="password" name="password">
-        <label for="confirm-password">confirm password</label>
-        <input type="password" name="password_confirmation">
-        <label for="jenis_usaha">jenis usaha</label>
-        <select name="jenis_usaha_id">
-            <option selected @readonly(true)>silahkan pilih</option>
-            @foreach ($jenis_usaha as $jenis )    
-            <option value="{{ $jenis->id }}">{{ $jenis->name }}</option>
-            @endforeach
-        </select>
-        <label for="klasifikasi_usaha">klasifikasi usaha</label>
-        <select name="klasifikasi_usaha_id">
-            <option selected @readonly(true)>silahkan pilih</option>
-            @foreach ($klasifikasi_usaha as $klasifikasi )    
-                <option value="{{ $klasifikasi->id }}">{{ $klasifikasi->name }}</option>
-            @endforeach
-        </select>
-        <label for="nama_usaha">nama usaha</label>
-        <input type="text" name="nama_usaha">
-        <label for="alamat">alamat usaha</label>
-        <textarea name="alamat" id="alamat"> </textarea>
-        <button type="submit">Register Now!</button>
-    </form> --}}
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             overflow-x: hidden;
-            }
-            body {
+          }
+          body {
             font-family: sans-serif;
             width: 100%;
             min-height: 100vh;
             position: relative;
             }
 
-            .Logo{
+          .Logo{
             position: absolute;
             top: 105%;
             color: #fff;
             padding-left: 30px; 
-            }
+          }
 
-            .Copyright{
+          .Copyright{
             position: absolute;
             top: 110%;  left: 80%;
             color: #fff;
+          }
 
-
-            }
-
-            #phri-logo {
+          #phri-logo {
             width: 200px;
             height: auto;
             position: absolute;
             top: 10px;
             left: 40px;
-            }
-            /* .mega-container{
-            width: 1280px;
-            margin: auto;
-            } */
+          }
 
-            .container {
+          .container {
             padding: 60px 0;
             width: 100%;
             min-height: 100vh;
@@ -84,21 +45,23 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            }
-            .container h1{
+          }
+
+          .container h1{
             font-size: 74px;
             margin-bottom: 20px;
-            }
+          }
 
-            .input-handphone{
+          .input-handphone{
             position: relative;
-            }
+          }
 
-            #nomor-handphone{
+          #nomor-handphone{
             width: 100%;
             padding-left: 40px;
-            }
-            .region-number{
+          }
+
+          .region-number{
             position: absolute;
             left: 5px;
             border-radius: 5px;
@@ -106,8 +69,9 @@
             font-size: 13px;
             padding: 2px 4px;
             background-color: #dfdfdf;
-            }
-            .box {
+          }
+
+          .box {
             width: 290px;
             background-color: white;
             height: fit-content;
@@ -115,57 +79,62 @@
             border-radius: 7px;
             border: 1px solid #7e7e7e;
             box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
-            }
+          }
 
-            .box form .input-group {
+          .box form .input-group {
             display: grid;
             grid-template-rows: 1fr 1fr;
             grid-template-columns: 1fr;
             gap: 0px;
             align-items: center;
             margin-bottom: 6px;
-            }
-            .box form .input-group label {
+          }
+
+          .box form .input-group label {
             text-align: left;
             font-size: 16px;
             font-weight: 500;
-            }
-            .box form .input-group input {
+          }
+
+          .box form .input-group input {
             padding: 7px 5px;
             font-size: 16px;
             border-radius: 4px;
             border: 1px solid #7e7e7e;
-            }
-            .input-radio{
+          }
+
+          .input-radio{
             text-align: left;
             display: flex;
             flex-direction: row;
             column-gap: 15px;
-            }
-            .box form .input-group .input-radio label{
+          }
+
+          .box form .input-group .input-radio label{
             font-size: 12px;
-            }
-            .disable{
+          }
+
+          .disable{
             visibility: hidden;
-            }
-            #ungu {
+          }
+          
+          #ungu {
             width: 30%;
             height: 100%;
             position: fixed;
             display: block;
             left: 0;
             z-index: 0;
-            }
-            #kuning {
+          }
+
+          #kuning {
             width: 30%;
             height: 100%;
             position: fixed;
             display: block;
             right: 0;
             z-index: 0;
-            }
-
-
+          }
 
             @media (min-width: 540px){
             .container .box form .input-group {
@@ -389,7 +358,6 @@
         usahaHotel.addEventListener("change", handleInputHotel);
         usahaRestoran.addEventListener("change", handleInputRestoran);
       </script>
-      
   <div class="Logo">
     <h5>Sosial Media</h5>
     <a class="bi bi-instagram"></a> 
@@ -400,6 +368,6 @@
     <h4>@ PHRI Provinsi Kalimantan Barat</h4>
   </div>
   <div class="Copyright">
-  <h5>Copyright. PT. Kita Serba Digital - 2024</h5>
+    <h5>Copyright. PT. Kita Serba Digital - 2024</h5>
   </div>  
 @endsection

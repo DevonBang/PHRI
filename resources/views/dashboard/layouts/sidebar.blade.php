@@ -12,20 +12,25 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('dashboard.berita') }}">
-                            All Berita
+                        <a class="nav-link {{ Request:: is('/dashboard/berita') ? 'active' : '' }}" href="{{ route('dashboard.berita') }}">
+                            Berita
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request:: is('/dashboard/kemitraan') ? 'active' : '' }}" href="{{ route('dashboard.mitra') }}">
+                            List User
                         </a>
                     </li>
                 </ul>
                 
-                @can('admin')
+                @can('superadmin')
                 <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                    <span>Administrator</span>
+                    <span>Super Admin</span>
                 </h6>
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link {{ Request:: is('dashboard/categories*') ? 'active' : '' }}" href="/dashboard/categories">
-                            Categories
+                        <a class="nav-link {{ Request:: is('dashboard/admin*') ? 'active' : '' }}" href="/dashboard/categories">
+                            Admin
                         </a>
                     </li>
                 </ul>

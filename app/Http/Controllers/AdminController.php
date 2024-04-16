@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
+    public function __construct() {
+        $this->middleware('guest');
+    }
 
     public function view_login()
     {
@@ -28,6 +31,8 @@ class AdminController extends Controller
             ]);
     
             if(Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])) {
+                return redirect()->route('dashboard.index');
+            }elseif(Auth::guard('superadmin')->attempt(['email' => $request->email, 'password' => $request->password])) {
                 return redirect()->route('dashboard.index');
             } else{
                 return redirect()->route('login.admin');

@@ -46,7 +46,7 @@ class DashboardAdminController extends Controller
 
         Berita::create($validateData);
 
-        return redirect()->route('dashboard.berita')->with('success', 'New post has been added');
+        return redirect()->route('dashboard.berita');
     }
     public function edit($slug)
     { 
@@ -78,7 +78,7 @@ class DashboardAdminController extends Controller
 
         Berita::whereId($id)->update($validateData);
 
-        return redirect()->route('dashboard.berita')->with('success', 'Post has been updated');
+        return redirect()->route('dashboard.berita');
     }
     public function destroy(Berita $id)
     {
@@ -90,6 +90,10 @@ class DashboardAdminController extends Controller
 
         Berita::destroy($data);
 
-        return redirect()->route('dashboard.berita')->with('success', 'Berita has been deleted!');
+        return redirect()->route('dashboard.berita');
+    }
+    public function mitra()
+    {
+        return view('dashboard.kemitraan.index');
     }
 }

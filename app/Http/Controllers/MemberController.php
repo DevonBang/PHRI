@@ -12,6 +12,10 @@ use Illuminate\Validation\Rules\Password;
 
 class MemberController extends Controller
 {
+    public function __construct() {
+        $this->middleware('multi');
+    }
+    
     public function view_register()
     {
         return view('Member.register', [

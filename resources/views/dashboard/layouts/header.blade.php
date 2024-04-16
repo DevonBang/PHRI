@@ -1,10 +1,10 @@
 <header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="light">
     <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="/">Dashboard</a>
 
-        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+        {{-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> --}}
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
-                <form action="/logout" method="post">
+                <form action="{{ route('logout') }}" method="post">
                 @csrf
                     <button type="submit" class="btn btn-warning"><i class="bi bi-box-arrow-right"></i> Logout</button>
                 </form>

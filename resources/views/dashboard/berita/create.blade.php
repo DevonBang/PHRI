@@ -42,7 +42,7 @@
             <input id="description" type="hidden" name="description">
             <trix-editor input="description"></trix-editor>
         </div>
-        <button type="submit" class="btn btn-primary">Create Berita</button>
+        <button type="submit" class="btn btn-primary btn-store">Create Berita</button>
     </form>
 </div>
 <script>

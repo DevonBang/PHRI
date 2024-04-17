@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-// use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-// use Illuminate\Support\Facades\Hash;
-// use App\Models\Admin;
 
 class AdminController extends Controller
 {
@@ -32,9 +29,7 @@ class AdminController extends Controller
     
             if(Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])) {
                 return redirect()->route('dashboard.index');
-            }elseif(Auth::guard('superadmin')->attempt(['email' => $request->email, 'password' => $request->password])) {
-                return redirect()->route('dashboard.index');
-            } else{
+            }else{
                 return redirect()->route('login.admin');
             }
         } catch(\Exception $e) {

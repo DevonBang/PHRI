@@ -22,7 +22,7 @@
                     <td>
                         <a class="text-decoration-none badge bg-info" href="{{ route('dashboard.berita-detail', ['slug' => $post->slug]) }}">See more</a>
                         <a class="text-decoration-none badge bg-warning" href="{{ route('dashboard.berita.edit', ['slug' => $post->slug]) }}">Edit</a>
-                        <form action="{{ route('dashboard.berita.destroy', ['id' => $post->id]) }}" method="post" class="d-inline" id="delete-form-{{ $post->id }}">
+                        <form action="{{ route('dashboard.berita.destroy', ['id' => $post->id]) }}" method="post" class="d-inline">
                             @method('delete')
                             @csrf
                             <button class="badge bg-danger border-0 btn-delete">Delete</button>

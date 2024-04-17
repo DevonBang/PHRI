@@ -4,12 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Berita;
+use App\Models\Admin;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Gate;
 
 class DashboardAdminController extends Controller
 {
     public function index()
     {
+        // Pastikan hanya pengguna dengan role superadmin yang dapat mengakses halaman ini
+        // if (!Gate::allows('superadmin')) {
+        //     abort(403);
+        // }
+
         return view('dashboard.index');
     }
     public function berita()
@@ -22,11 +29,11 @@ class DashboardAdminController extends Controller
         $berita = Berita::where('slug', $slug)->first();
         return view('dashboard.berita.show', ['berita' => $berita]);
     }
-    public function create()
+    public function create_berita()
     {
         return view('dashboard.berita.create');
     }
-    public function store(Request $request)
+    public function store_berita(Request $request)
     {
         // dd($request->all());
         $validateData = $request->validate([
@@ -48,7 +55,7 @@ class DashboardAdminController extends Controller
 
         return redirect()->route('dashboard.berita');
     }
-    public function edit($slug)
+    public function edit_berita($slug)
     { 
         $berita = Berita::where('slug', $slug)->first();
         if ($berita === null) {
@@ -59,7 +66,7 @@ class DashboardAdminController extends Controller
             'berita' => $berita,
         ]);
     }
-    public function update(Request $request,$id){
+    public function update_berita(Request $request,$id){
         $rules = [
             'title' => 'required|max:255',
             'slug' => 'required|max:255|unique:beritas',
@@ -80,7 +87,7 @@ class DashboardAdminController extends Controller
 
         return redirect()->route('dashboard.berita');
     }
-    public function destroy(Berita $id)
+    public function destroy_berita(Berita $id)
     {
         $data = Berita::find($id);
 
@@ -96,4 +103,5 @@ class DashboardAdminController extends Controller
     {
         return view('dashboard.kemitraan.index');
     }
+    
 }

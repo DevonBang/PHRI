@@ -5,6 +5,7 @@ use App\Http\Controllers\MemberController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\DashboardAdminController;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,7 +22,7 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
-Route::get('/', [MainController::class, 'index']);
+Route::get('/', [MainController::class, 'index'])->name('beranda');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -40,10 +41,13 @@ Route::group(['middleware' => 'admin'], function(){
     Route::get('/dashboard', [DashboardAdminController::class, 'index'])->name('dashboard.index');
     Route::get('/dashboard/berita', [DashboardAdminController::class, 'berita'])->name('dashboard.berita');
     Route::get('/dashboard/berita-detail/{slug}', [DashboardAdminController::class, 'berita_detail'])->name('dashboard.berita-detail');
-    Route::get('/dashboard/berita-create', [DashboardAdminController::class, 'create'])->name('dashboard.berita.create');
-    Route::post('/dashboard/berita-store', [DashboardAdminController::class, 'store'])->name('dashboard.berita.store');
-    Route::get('/dashboard/berita-edit/{slug}', [DashboardAdminController::class, 'edit'])->name('dashboard.berita.edit');
-    Route::put('/dashboard/berita-update/{id}', [DashboardAdminController::class, 'update'])->name('dashboard.berita.update');
-    Route::delete('/dashboard/berita-delete/{id}', [DashboardAdminController::class, 'destroy'])->name('dashboard.berita.destroy');
+    Route::get('/dashboard/berita-create', [DashboardAdminController::class, 'create_berita'])->name('dashboard.berita.create');
+    Route::post('/dashboard/berita-store', [DashboardAdminController::class, 'store_berita'])->name('dashboard.berita.store');
+    Route::get('/dashboard/berita-edit/{slug}', [DashboardAdminController::class, 'edit_berita'])->name('dashboard.berita.edit');
+    Route::put('/dashboard/berita-update/{id}', [DashboardAdminController::class, 'update_berita'])->name('dashboard.berita.update');
+    Route::delete('/dashboard/berita-delete/{id}', [DashboardAdminController::class, 'destroy_berita'])->name('dashboard.berita.destroy');
     Route::get('/dashboard/kemitraan', [DashboardAdminController::class, 'mitra'])->name('dashboard.mitra');
+    Route::get('/dashboard/admin', [SuperAdminController::class, 'admin'])->name('dashboard.admin');
+    Route::post('/dashboard/admin/add', [SuperAdminController::class, 'add_admin'])->name('dashboard.admin.add');
+    Route::delete('/dashboard/admin-delete/{id}', [SuperAdminController::class, 'destroy_admin'])->name('dashboard.admin.destroy');
 });

@@ -20,9 +20,7 @@ class AppServiceProvider extends ServiceProvider
      * Bootstrap any application services.
      */
     public function boot(): void
-    {
-        Gate::define('superadmin', function(Admin $admin ) {
-            return $admin->is_superadmin;
-        });
+    {        
+        
     }
 }

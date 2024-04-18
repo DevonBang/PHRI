@@ -18,7 +18,12 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ Request:: is('/dashboard/kemitraan') ? 'active' : '' }}" href="{{ route('dashboard.mitra') }}">
-                            List User
+                            List Mitra
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request:: is('/dashboard/member') ? 'active' : '' }}" href="{{ route('dashboard.member') }}">
+                            List Member PHRI
                         </a>
                     </li>
                 </ul>

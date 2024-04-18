@@ -23,6 +23,7 @@ return new class extends Migration
             $table->foreign('jenis_usaha_id')->references('id')->on('jenis_usahas')->onDelete('cascade');
             $table->unsignedBigInteger('klasifikasi_usaha_id');
             $table->foreign('klasifikasi_usaha_id')->references('id')->on('klasifikasi_usahas')->onDelete('cascade');
+            $table->string('rating_usaha');
             $table->timestamps();
         });
     }

@@ -6,17 +6,11 @@ use Illuminate\Http\Request;
 use App\Models\Berita;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Gate;
 
 class DashboardAdminController extends Controller
 {
     public function index()
     {
-        // Pastikan hanya pengguna dengan role superadmin yang dapat mengakses halaman ini
-        // if (!Gate::allows('superadmin')) {
-        //     abort(403);
-        // }
-
         return view('dashboard.index');
     }
     public function berita()
@@ -35,57 +29,79 @@ class DashboardAdminController extends Controller
     }
     public function store_berita(Request $request)
     {
-        // dd($request->all());
-        $validateData = $request->validate([
-            'title' => 'required|max:255',
-            'slug' => 'required|unique:beritas',
-            'image' => 'required|mimes:png,jpeg,jpg|max:2048',
-            'description' => 'required'
-        ]);
+        try{
+            // dd($request->all());
+            $request->validate([
+                'title' => 'required|max:255',
+                'slug' => 'required|unique:beritas',
+                'image' => 'required|mimes:png,jpeg,jpg|max:2048',
+                'description' => 'required'
+            ]);
 
-        $foto = $request->file('image');
-        $filename = date('Y-m-d-').$foto->getClientOriginalName();
-        $path = 'berita-images/'.$filename;
-        
-        Storage::disk('public')->put($path, file_get_contents($foto));
+            $store = new Berita;
+            $store->title = $request->title;
+            $store->slug = $request->slug;
+            $store->description = $request->description;
 
-        $validateData['image'] = $filename;
+            $foto = $request->file('image');
+            $filename = date('Y-m-d-').$foto->getClientOriginalName();
+            $path = 'berita-images/'.$filename;
+            
+            Storage::disk('public')->put($path, file_get_contents($foto));
 
-        Berita::create($validateData);
+            $store->image = $filename;
+            $store->save();
 
-        return redirect()->route('dashboard.berita');
-    }
-    public function edit_berita($slug)
-    { 
-        $berita = Berita::where('slug', $slug)->first();
-        if ($berita === null) {
-            abort(404);
+            return ['status' => true, 'pesan' => 'Berita Berhasil Ditambahkan'];
+        } catch(\Exception $e){
+            return ['status' => false, 'error' => $e->getMessage()];
         }
-
-        return view('dashboard.berita.edit', [
-            'berita' => $berita,
-        ]);
+    }
+    public function edit_berita($id)
+    {
+        $berita = Berita::find($id);
+        if($berita)
+        {
+            return response()->json([
+                'status' => 200,
+                'berita' => $berita,
+            ]);
+        }
+        else
+        {
+            return response()->json([
+                'status' => 404,
+                'message' => 'gak ada nih'
+            ]);
+        }
     }
     public function update_berita(Request $request,$id){
-        $rules = [
-            'title' => 'required|max:255',
-            'slug' => 'required|max:255|unique:beritas',
-            'image' => 'image|file|max:1024',
-            'description' => 'required'
-        ];
+        try {
+            $request->validate([
+                'title' => 'required',
+                'slug' => 'required',
+                'image' => 'image|mimes:png,jpeg,jpg|max:2048',
+                'description' => 'required'
+            ]);
 
-        $validateData = $request->validate($rules);
-        
-        if ($request->file('image')) {
-            if($request->oldImage) {
-                Storage::delete($request->oldImage);
+            $update = Berita::find($id);
+            $update->title = $request->title;
+            $update->slug = $request->slug;
+            $update->description = $request->description;
+
+            if ($update->image) {
+                Storage::disk('public')->delete('berita-images/' . $update->image);
             }
-            $validateData['image'] = $request->file('image')->store('berita-images');
+            $foto = $request->file('image');
+            $fotoname = date('Y-m-d-') . $foto->getClientOriginalName();
+            $request->image->move('storage/berita-images/', $fotoname);
+            $update->image = $fotoname;
+            $update->save();
+
+            return ['status' => true, 'pesan' => 'Berita Berhasil Diupdate'];
+        } catch(\Exception $e) {
+            return ['status' => false, 'error' => $e->getMessage()];
         }
-
-        Berita::whereId($id)->update($validateData);
-
-        return redirect()->route('dashboard.berita');
     }
     public function destroy_berita(Berita $id)
     {
@@ -102,6 +118,10 @@ class DashboardAdminController extends Controller
     public function mitra()
     {
         return view('dashboard.kemitraan.index');
+    }
+    public function member()
+    {
+        return view('dashboard.member.index');
     }
     
 }

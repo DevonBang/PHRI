@@ -10,4 +10,9 @@ class Klasifikasi_usaha extends Model
     use HasFactory;
     protected $table = 'klasifikasi_usahas';
     protected $fillable = ['name'];
+
+    public function members()
+    {
+        return $this->hasMany(Member::class);
+    }
 }

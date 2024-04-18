@@ -5,7 +5,6 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Admin;
-use App\Models\SuperAdmin;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -28,13 +27,6 @@ class DatabaseSeeder extends Seeder
             'name' => 'endian',
             'username' => 'Admin2',
             'email' => 'admin2@gmail.com',
-            'password' => Hash::make('12345') 
-        ]);
-
-        SuperAdmin::create([
-            'name' => 'endian',
-            'username' => 'Admin3',
-            'email' => 'admin3@gmail.com',
             'password' => Hash::make('12345') 
         ]);
     }

@@ -200,18 +200,18 @@
             @csrf
               <div class="input-group">
                 <label for="username">Username</label>
-                <input type="text" name="username" id="username" />
+                <input type="text" name="username" id="username" placeholder="masukkan username" />
               </div>
               <div class="input-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" />
+                <input type="email" id="email" name="email" placeholder="example@email.com" />
               </div>
               <div class="input-group">
                 <label for="no_hp">Nomor Handphone</label>
                 <div class="input-handphone">
                   <input
                     type="number"
-                    placeholder="823234567241"
+                    placeholder="823xxxxxx"
                     id="nomor-handphone"
                     name="no_hp"
                   />
@@ -236,16 +236,12 @@
                 </select>
               </div>
               <div class="input-group">
-                <label for="nama-usaha">Nama Usaha</label>
-                <input type="text" id="nama_usaha" name="nama_usaha" />
-              </div>
-              <div class="input-group">
                 <label>Klasifikasi Usaha</label>
                 <div class="input-radio">
                     @foreach ($klasifikasi_usaha as $klasifikasi )
                     <div class="">
                         <input
-                        type="checkbox"
+                        type="radio"
                         id="usaha-hotel"
                         name="klasifikasi_usaha_id"
                         value="{{ $klasifikasi->id }}"
@@ -255,109 +251,72 @@
                     @endforeach
                 </div>
               </div>
-              <div class="input-group" id="hotel">
-                <label for="hotel-bintang">Hotel</label>
+              <div class="input-group">
+                <label for="nama-usaha">Nama Usaha</label>
+                <input type="text" id="nama_usaha" name="nama_usaha" placeholder="Hotel ... / Resto ...." />
               </div>
-              <div class="input-group" id="restoran">
-                <label for="">Restoran</label>
+              <div class="input-group">
+                <label>Rating Usaha</label>
+                <div class="input-radio">
+                    <div class="">
+                        <input
+                        type="radio"
+                        name="rating_usaha"
+                        value="0"
+                        />
+                        <label for="rating_usaha">-</label>
+                    </div>
+                    <div class="">
+                        <input
+                        type="radio"
+                        name="rating_usaha"
+                        value="1"
+                        />
+                        <label for="rating_usaha">1</label>
+                    </div>
+                    <div class="">
+                        <input
+                        type="radio"
+                        name="rating_usaha"
+                        value="2"
+                        />
+                        <label for="rating_usaha">2</label>
+                    </div>
+                    <div class="">
+                        <input
+                        type="radio"
+                        name="rating_usaha"
+                        value="3"
+                        />
+                        <label for="rating_usaha">3</label>
+                    </div>
+                    <div class="">
+                        <input
+                        type="radio"
+                        name="rating_usaha"
+                        value="4"
+                        />
+                        <label for="rating_usaha">4</label>
+                    </div>
+                    <div class="">
+                        <input
+                        type="radio"
+                        name="rating_usaha"
+                        value="5"
+                        />
+                        <label for="rating_usaha">5</label>
+                    </div>
+                </div>
               </div>
               <div class="input-group">
                 <label for="Alamat">Alamat</label>
-                <textarea name="alamat" id="alamat" cols="20" rows="10"></textarea>
+                <textarea name="alamat" id="alamat" cols="20" rows="10" placeholder="jl. ............,city, province, nation"></textarea>
               </div>
               <button type="submit">Register Now!</button>
             </form>
           </div>
         </div>
       </div>
-      <script>
-        const usahaHotel = document.querySelector("#usaha-hotel");
-        const usahaRestoran = document.querySelector("#usaha-restoran");
-        const hotelInput = document.querySelector("#hotel");
-        const restoranInput = document.querySelector("#restoran");
-  
-        const handleInputHotel = () => {
-          if (usahaHotel.checked === true) {
-            const klasifikasi = 
-            `<div class="input-radio" id="hotel-radio">
-                <div class="">
-                    <input type="radio" id="rating" name="rating" value="1">
-                    <label for="rating">1</label>
-                </div>
-                <div class="">
-                    <input type="radio" id="rating" name="rating" value="2">
-                    <label for="rating">2</label>
-                </div>
-                <div class="">
-                    <input type="radio" id="rating" name="rating" value="2">
-                    <label for="rating">3</label>
-                </div>
-                <div class="">
-                    <input type="radio" id="rating" name="rating" value="2">
-                    <label for="rating">4</label>
-                </div>
-                <div class="">
-                    <input type="radio" id="rating" name="rating" value="2">
-                    <label for="rating">5</label>
-                </div>
-            </div>`;
-            hotelInput.innerHTML += klasifikasi;
-          } else if(usahaHotel.checked === false){
-            const hotelRadio = document.querySelector("#hotel-radio");
-            hotelRadio.remove();
-          }
-        }
-        const handleInputRestoran = () => {
-          if (usahaRestoran.checked === true) {
-            const klasifikasi = 
-            ` <div class="input-radio" id="restoran-radio">
-                  <div class="">
-                    <input
-                      type="radio"
-                      id="kalangan"
-                      name="kalangan"
-                      value="rendah"
-                    />
-                    <label for="kalangan">Rendah</label>
-                  </div>
-                  <div class="">
-                    <input
-                      type="radio"
-                      id="kalangan"
-                      name="kalangan"
-                      value="menengah-rendah"
-                    />
-                    <label for="kalangan">Menengah Rendah</label>
-                  </div>
-                  <div class="">
-                    <input
-                      type="radio"
-                      id="kalangan"
-                      name="kalangan"
-                      value="menengah-tinggi"
-                    />
-                    <label for="kalangan">Mengengah Tinggi</label>
-                  </div>
-                  <div class="">
-                    <input
-                      type="radio"
-                      id="kalangan"
-                      name="kalangan"
-                      value="tinggi"
-                    />
-                    <label for="kalangan">Tinggi</label>
-                  </div>
-                </div>`;
-            restoranInput.innerHTML += klasifikasi;
-          } else if(usahaRestoran.checked === false){
-            const restoranRadio = document.querySelector("#restoran-radio");
-            restoranRadio.remove();
-          }
-        }
-  
-        usahaHotel.addEventListener("change", handleInputHotel);
-        usahaRestoran.addEventListener("change", handleInputRestoran);
-      </script>
   <div class="Logo">
     <h5>Sosial Media</h5>
     <a class="bi bi-instagram"></a> 

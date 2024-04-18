@@ -5,15 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Jenis_usaha;
 use App\Models\Member;
 use App\Models\Klasifikasi_usaha;
-use Dotenv\Exception\ValidationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules\Password;
 
 class MemberController extends Controller
 {
     public function __construct() {
-        $this->middleware('multi');
+        $this->middleware('guest');
     }
     
     public function view_register()
@@ -33,6 +31,7 @@ class MemberController extends Controller
             'password' => 'required|confirmed|min:8',
             'jenis_usaha_id' => 'required',
             'klasifikasi_usaha_id' => 'required',
+            'rating_usaha' => 'required',
             'nama_usaha' => 'required',
             'alamat' => 'required',
         ]);
@@ -45,6 +44,7 @@ class MemberController extends Controller
             'no_hp' => $request->no_hp,
             'jenis_usaha_id' => $request->jenis_usaha_id,
             'klasifikasi_usaha_id' => $request->klasifikasi_usaha_id,
+            'rating_usaha' => $request->rating_usaha,
             'password' => Hash::make($request->password)
         ]);
 

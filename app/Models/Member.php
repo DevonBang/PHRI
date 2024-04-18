@@ -18,4 +18,8 @@ class Member extends Model
     public function klasifikasi_usaha(){
         return $this->belongsTo(Klasifikasi_usaha::class, 'klasifikasi_usaha_id');
     }
+
+    public function rating_usaha(){
+        return $this->belongsTo(Rating_usaha::class, 'klasifikasi_usaha_id');
+    }
 }

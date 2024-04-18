@@ -11,4 +11,8 @@ class Jenis_usaha extends Model
     protected $table = 'jenis_usahas';
     protected $fillable = ['name'];
 
+    public function members()
+    {
+        return $this->hasMany(Member::class);
+    }
 }

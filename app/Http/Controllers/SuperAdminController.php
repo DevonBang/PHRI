@@ -24,22 +24,26 @@ class SuperAdminController extends Controller
     }
     public function add_admin(Request $request)
     {
-        // dd($request->all());
-        $request->validate([
-            'name' => 'required|max:255',
-            'username' => 'required|max:255|unique:admins',
-            'email' => 'required|email|unique:admins',
-            'password' => 'required|min:5',
-        ]);
+        try{
+            // dd($request->all());
+            $request->validate([
+                'name' => 'required|max:255',
+                'username' => 'required|max:255|unique:admins',
+                'email' => 'required|email|unique:admins',
+                'password' => 'required|min:5',
+            ]);
+    
+            $store = new Admin;
+            $store->name = $request->name;
+            $store->username = $request->username;
+            $store->email = $request->email;
+            $store->password = Hash::make($request->password);
+            $store->save();
 
-        $store = new Admin;
-        $store->name = $request->name;
-        $store->username = $request->username;
-        $store->email = $request->email;
-        $store->password = Hash::make($request->password);
-        $store->save();
-
-        return redirect()->route('dashboard.admin');
+            return ['status' => true, 'pesan' => 'Admin Berhasil Ditambahkan'];
+        }catch(\Exception $e) {
+            return ['status' => false, 'error' => $e->getMessage()];
+        }
     }
     public function destroy_admin(Admin $id)
     {

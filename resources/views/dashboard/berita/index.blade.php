@@ -5,7 +5,6 @@
         <h1 class="h2"> All Berita </h1>
     </div>
     <div class="table-responsive col-lg-9">
-        {{-- <a class="btn btn-primary mb-3" href="{{ route('dashboard.berita.create') }}">Create new berita</a> --}}
         <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Tambah Berita
           </button>
@@ -172,7 +171,7 @@
                                 text: response.pesan,
                                 icon: "success"
                             }).then(() => {
-                                $('#staticBackdrop').modal('hide');
+                                $('#exampleModal').modal('hide');
                                 window.location.reload();
                             });
                         } else {

@@ -287,6 +287,67 @@
     .clubhouse {
         padding-top: 50px;
     }
+    footer {
+        display: grid;
+        grid-template-columns: auto auto auto auto auto;
+        background-color: #432D77;
+        padding: 50px;
+        color: white;
+    }
+
+    footer .hubungi{
+        width: 150px;
+    }
+
+    footer .buka{
+        width: 150px;
+        padding-left: 10px;
+    }
+
+    footer .foto{
+        text-align: center;
+        padding-left: 30px;
+        padding-right: 40px;
+    }
+
+    footer .tentangkami{
+        width: 350px;
+    }
+
+    footer .vl{
+        border-left: 2px solid white;
+        height: 200px;  
+    }
+
+    footer .logo .bi-instagram{
+        color: #f1f1f1;
+        font-size: 25px;
+    }
+    footer .logo .bi-facebook{
+        color: #f1f1f1;
+        font-size: 25px;
+    }
+    footer .logo .bi-twitter{
+        color: #f1f1f1;
+        font-size: 25px;
+    }
+    footer .logo .bi-youtube{
+        color: #f1f1f1;
+        font-size: 25px;
+    }
+    footer .logo .bi-tiktok{
+        color: #f1f1f1;
+        font-size: 25px;
+    }
+
+    footer .logo p{
+        width: 225px;
+    }
+
+    footer .hr{
+        padding-top: 120px;
+        width: 450%;
+    }
 </style>
 @include('navbar')
 <section id="hero" class="photo1">
@@ -346,9 +407,8 @@
           </div>
           <button><a href=""></a>Daftar Sekarang</button>
         </div>
-      </div>
+    </div>
 </section>
-
 <section id="kemitraan" class="section-kemitraan">
     <div class="kemitraan">
         <img src="{{ asset('assets/img/kemitraan.png') }}" alt="" class="kemitraan">
@@ -389,4 +449,48 @@
             <img src="{{ asset('assets/img/clubhouse.png') }}" alt="" class="clubhouse">
         </div>
 </section>
+<footer>
+    <section class="hubungi">
+    <p style="font-weight: bolder;">Hubungi Kami</p>
+    <p>(+62)895-2433-3097</p>
+    <p>(+62)895-2433-3097</p>
+    <p>inigmail@gmail.com</p>
+    <p>jln.jalan Gg. gang, D4</p>
+    </section>
+
+    <section class="buka"><p style="font-weight: bolder;">Buka Jam</p>
+        <p>08:30 - 23:00 WIB Senin-Sabtu</p>
+    </section>
+
+    <section class="foto">
+        <p style="font-weight: bolder;">Lokasi</p>
+        <p>Jln.jalan, Gg. komplek, d0</p>
+        <img src="{{ asset('assets/img/footerfoto.png') }}" alt="" class="footerfoto">
+    </section>
+
+    <section>
+    <div class="vl"></div>
+    </section>
+    <section class="tentangkami">
+        <p style="font-weight: bolder;">Tentang kami</p>
+        <p>Kami adalah sebuah perusahaan instansi pemerintah
+            yang bergerrak pada bidang perhotelan yang berada
+            di pontianak, kami berharap agar instansi ini bisa 
+            memberikan layanan yang terbaik kepada semua
+            orang yang tinggal dikalimantan Barat.</p>
+    </section>
+
+    <section class="logo">
+        <p style="font-weight: bolder;">Sosial Media</p>
+        <a href="" class="nav-link"><i class="bi bi-instagram"></i></a>
+        <a href="" class="nav-link"><i class="bi bi-facebook"></i></a>
+        <a href="" class="nav-link"><i class="bi bi-twitter"></i></a>
+        <a href="" class="nav-link"><i class="bi bi-youtube"></i></a>
+        <a href="" class="nav-link"><i class="bi bi-tiktok"></i></a>
+        <p>@PHRI Provinsi Kalimantan Barat</p>
+    </section>
+
+
+    <section class="hr"><hr></section>    
+</footer>
 @endsection

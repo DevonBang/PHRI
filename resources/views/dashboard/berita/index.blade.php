@@ -23,7 +23,7 @@
                     <td>{{ $post->title }}</td>
                     <td>
                         <a class="text-decoration-none badge bg-info" href="{{ route('dashboard.berita-detail', ['slug' => $post->slug]) }}">See more</a>
-                        <button type="button" class="badge bg-warning edit-berita" value="{{ $post->id }}">
+                        <button type="button" class="badge bg-warning edit-berita border-0" value="{{ $post->id }}">
                             Edit
                         </button>
                         <form action="{{ route('dashboard.berita.destroy', ['id' => $post->id]) }}" method="post" class="d-inline">

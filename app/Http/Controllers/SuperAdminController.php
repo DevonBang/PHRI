@@ -10,10 +10,6 @@ class SuperAdminController extends Controller
 {
     public function admin(Admin $admin)
     {
-        // $this->authorize('superadmin', $admin);
-        // if (!auth('admin')->user()->can('superadmin')) {
-        //     abort(403);
-        // }
         $admin = auth()->guard('admin')->user();
 
         if (!$admin || !$admin->is_superadmin) {
@@ -25,7 +21,6 @@ class SuperAdminController extends Controller
     public function add_admin(Request $request)
     {
         try{
-            // dd($request->all());
             $request->validate([
                 'name' => 'required|max:255',
                 'username' => 'required|max:255|unique:admins',

@@ -22,6 +22,7 @@
             <th>{{ $admin->name }}</th>
             <th>{{ $admin->email }}</th>
             <th>
+                <button class="badge bg-warning border-0">Reset Password</button>
                 <form action="{{ route('dashboard.admin.destroy', ['id' => $admin->id]) }}" method="post" class="d-inline">
                     @method('delete')
                     @csrf

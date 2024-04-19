@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BeritaController;
-use App\Http\Controllers\MainController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\DashboardAdminController;
 use Illuminate\Support\Facades\Auth;
@@ -22,20 +22,16 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
-Route::get('/', [MainController::class, 'index'])->name('beranda');
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/berita', [BeritaController::class, 'index'])->name('berita');
 Route::get('/berita-detail/{slug}', [BeritaController::class, 'detail_berita'])->name('berita.detail');
-Route::get('/create-berita', [BeritaController::class, 'create'])->name('berita.create');
-Route::post('/create-berita', [BeritaController::class, 'store'])->name('berita.createnew');
 
 Route::get('/register-member', [MemberController::class, 'view_register'])->name('register.member');
 Route::post('/register-member-proses', [MemberController::class, 'create_member'])->name('register.member.proses');
 
 Route::get('/login-admin', [AdminController::class, 'view_login'])->name('login.admin');
-Route::post('/login-admin', [AdminController::class, 'login_verif'])->name('login.admin.load');
+Route::post('/login-admin-proses', [AdminController::class, 'login_verif'])->name('login.admin.load');
 
 Route::group(['middleware' => 'admin'], function(){
     Route::get('/dashboard', [DashboardAdminController::class, 'index'])->name('dashboard.index');

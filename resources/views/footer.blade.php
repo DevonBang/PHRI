@@ -23,10 +23,11 @@
     <section class="tentangkami">
         <p style="font-weight: bolder;">Tentang kami</p>
         <p>Kami adalah sebuah perusahaan instansi pemerintah
-            yang bergerrak pada bidang perhotelan yang berada
+            yang bergerak pada bidang perhotelan yang berada
             di pontianak, kami berharap agar instansi ini bisa 
             memberikan layanan yang terbaik kepada semua
-            orang yang tinggal dikalimantan Barat.</p>
+            orang yang tinggal dikalimantan Barat.
+        </p>
     </section>
 
     <section class="logo">

@@ -18,12 +18,13 @@ return new class extends Migration
             $table->string('no_hp');
             $table->string('password');
             $table->string('nama_usaha');
-            $table->string('alamat');
+            $table->text('alamat');
             $table->unsignedBigInteger('jenis_usaha_id');
             $table->foreign('jenis_usaha_id')->references('id')->on('jenis_usahas')->onDelete('cascade');
             $table->unsignedBigInteger('klasifikasi_usaha_id');
             $table->foreign('klasifikasi_usaha_id')->references('id')->on('klasifikasi_usahas')->onDelete('cascade');
             $table->string('rating_usaha');
+            $table->enum('status',["diterima","ditolak", "n/a"])->default('n/a');
             $table->timestamps();
         });
     }

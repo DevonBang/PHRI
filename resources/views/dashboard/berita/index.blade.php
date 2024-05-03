@@ -1,90 +1,81 @@
 @extends('dashboard.layouts.main')
 
-@section('container')
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2"> All Berita </h1>
-    </div>
-    <div class="table-responsive col-lg-9">
-        <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Tambah Berita
-          </button>
-        <table class="table table-striped table-sm">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($beritas as $post)    
-                <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $post->title }}</td>
-                    <td>
-                        <a class="text-decoration-none badge bg-info" href="{{ route('dashboard.berita-detail', ['slug' => $post->slug]) }}">See more</a>
-                        <button type="button" class="badge bg-warning edit-berita border-0" value="{{ $post->id }}">
-                            Edit
-                        </button>
-                        <form action="{{ route('dashboard.berita.destroy', ['id' => $post->id]) }}" method="post" class="d-inline">
-                            @method('delete')
-                            @csrf
-                            <button class="badge bg-danger border-0 btn-delete">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+@section('content')
+    <div class="card mb-0">
+        <div class="card-body">
+            <h4 class="card-title text-center">All Berita</h4>
+            <button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Tambah Berita
+            </button>
+            <div class="table-responsive">
+                <table class="table datanew">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Image</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($beritas as $post)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td><img src="{{ asset('storage/berita-images/' . $post->image) }}"></td>
+                                <td>{{ $post->title }}</td>
+                                <td>{{ $post->description }}</td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-warning edit-berita border-0"
+                                        value="{{ $post->id }}">
+                                        Edit
+                                    </button>
+                                    <form action="{{ route('dashboard.berita.destroy', ['id' => $post->id]) }}"
+                                        method="post" class="d-inline">
+                                        @method('delete')
+                                        @csrf
+                                        <button class="btn btn-sm btn-danger border-0 btn-delete">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
     <!-- Modal Tambah Berita -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content bg-white">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Form Tambah Berita</h1>
+                    <h1 class="modal-title fs-5 text-black" id="exampleModalLabel">Form Tambah Berita</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form method="post" id="form_store" class="mb-5" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
-                            <label for="title" class="form-label">Title</label>
-                            <input type="text" class="form-control @error('title') is-invalid @enderror" id="title_create" name="title" value="{{ old('title') }}" required autofocus>
-                            @error('title')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+                            <label for="title" class="form-label">Title</label><span style="margin-left: 1px;color: red">*</span>
+                            <input type="text" class="form-control" id="title_create" name="title"
+                                value="{{ old('title') }}" required autofocus>
                         </div>
                         <div class="mb-3">
-                            <input type="hidden" class="form-control @error('slug') is-invalid @enderror" id="slug_create" name="slug" required>
-                            @error('slug')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+                            <input type="hidden" class="form-control" id="slug_create" name="slug" required>
                         </div>
                         <div class="mb-3">
-                            <label for="image" class="form-label">Input gambar</label>
+                            <label for="image" class="form-label">Input gambar</label><span style="margin-left: 1px;color: red">*</span>
                             <img class="img-preview img-fluid mb-3 col-sm-5">
-                            <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image" onchange="previewImage()">
-                            @error('image')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+                            <input class="form-control" type="file" id="image" name="image"
+                                onchange="previewImage()">
                         </div>
                         <div class="mb-3">
-                            <label for="description" class="form-label">Description</label>
-                            @error('description')
-                                <p class="text-danger">{{ $message }}</p>
-                            @enderror
-                            <textarea class="form-control" id="description" name="description" aria-label="With textarea"></textarea>
+                            <label for="description" class="form-label">Description</label><span style="margin-left: 1px;color: red">*</span>
+                            <textarea class="form-control bg-white" id="description" name="description" aria-label="With textarea"></textarea>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          <button type="submit" class="btn btn-primary">Tambah Berita</button>
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Tambah Berita</button>
                         </div>
                     </form>
                 </div>
@@ -92,12 +83,11 @@
         </div>
     </div>
     <!-- Modal Edit Berita -->
-    <div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="staticBackdropLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content bg-white">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModal2Label">Edit Berita</h1>
+                    <h1 class="modal-title fs-5 text-black" id="exampleModal2Label">Edit Berita</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -105,56 +95,43 @@
                         @csrf
                         <input type="hidden" id="edit_berita_id">
                         <div class="mb-3">
-                            <label for="title" class="form-label">Title</label>
-                            <input type="text" class="form-control @error('title') is-invalid @enderror" id="edit_title" name="title" required autofocus>
-                            @error('title')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+                            <label for="title" class="form-label">Title</label><span style="margin-left: 1px;color: red">*</span>
+                            <input type="text" class="form-control" id="edit_title" name="title" required autofocus>
                         </div>
                         <div class="mb-3">
-                            <input type="hidden" class="form-control @error('slug') is-invalid @enderror" id="edit_slug" name="slug" required>
-                            @error('slug')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+                            <input type="hidden" class="form-control bg-white @error('slug') is-invalid @enderror"
+                                id="edit_slug" name="slug" required>
                         </div>
                         <img id="image-old" width="100px" height="100px" alt="old-image">
                         <div class="mb-3">
-                            <label for="image" class="form-label">Input gambar</label>
+                            <label for="image" class="form-label text-black">Input gambar</label><span style="margin-left: 1px;color: red">*</span>
                             <img class="img-preview img-fluid mb-3 col-sm-5">
-                            <input class="form-control @error('image') is-invalid @enderror" type="file" id="edit_image" name="image" onchange="previewImage()">
-                            @error('image')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+                            <input class="form-control bg-white @error('image') is-invalid @enderror" type="file"
+                                id="edit_image" name="image" onchange="previewImage()">
                         </div>
                         <div class="mb-3">
-                            <label for="description" class="form-label">Description</label>
-                            @error('description')
-                                <p class="text-danger">{{ $message }}</p>
-                            @enderror
-                            <textarea class="form-control" id="edit_description" name="description" aria-label="With textarea"></textarea>
+                            <label for="description" class="form-label text-black">Description</label><span style="margin-left: 1px;color: red">*</span>
+                            <textarea class="form-control bg-white" id="edit_description" name="description" aria-label="With textarea"></textarea>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          <button type="submit" class="btn btn-primary">Edit Berita</button>
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Edit Berita</button>
                         </div>
                     </form>
                 </div>
             </div>
+        </div>
     </div>
+@endsection
+@section('script')
     <script>
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        
-        $(function(){
+
+        $(function() {
             $(document).on('submit', '#form_store', function(e) {
                 e.preventDefault();
                 $.ajax({
@@ -167,13 +144,13 @@
                     success: function(response) {
                         if (response.status == true) {
                             Swal.fire({
-                                title: "Good job!",
+                                title: "Berhasil!",
                                 text: response.pesan,
                                 icon: "success"
                             }).then(() => {
                                 $('#exampleModal').modal('hide');
                                 window.location.reload();
-                            });
+                            }, 1000);
                         } else {
                             Swal.fire({
                                 title: "Error!",
@@ -194,12 +171,12 @@
                     type: "GET",
                     url: "/dashboard/berita-edit/" + berita_id,
                     success: function(response) {
-                        // console.log(response);
                         if (response.status === 200) {
                             $('#edit_title').val(response.berita.title);
                             $('#edit_slug').val(response.berita.slug);
                             $('#edit_description').val(response.berita.description);
-                            $('#image-old').attr('src', '/storage/berita-images/' + response.berita.image);                            
+                            $('#image-old').attr('src', '/storage/berita-images/' + response
+                                .berita.image);
                         } else {
 
                         }
@@ -220,13 +197,13 @@
                     success: function(response) {
                         if (response.status == true) {
                             Swal.fire({
-                                title: "Good job!",
+                                title: "Berhasil!",
                                 text: response.pesan,
                                 icon: "success"
                             }).then(() => {
                                 $('#staticBackdrop').modal('hide');
                                 window.location.reload();
-                            });
+                            }, 1000);
                         } else {
                             Swal.fire({
                                 title: "Error!",
@@ -238,23 +215,23 @@
                 });
             });
 
-            $(document).on('click', '.btn-delete', function(e){
+            $(document).on('click', '.btn-delete', function(e) {
                 e.preventDefault();
                 var delay = $(this).data('delay');
                 Swal.fire({
-                    title: "Are you sure?",
-                    text: "You won't be able to revert this!",
+                    title: "Anda yakin?",
+                    text: "Data yang dihapus tidak dapat dikembalikan!",
                     icon: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#3085d6",
                     cancelButtonColor: "#d33",
-                    confirmButtonText: "Yes, delete it!"
-                    }).then((result) => {
+                    confirmButtonText: "Ya, Hapus!"
+                }).then((result) => {
                     if (result.isConfirmed) {
-                        setTimeout(function(){
+                        setTimeout(function() {
                             Swal.fire({
-                                title: "Deleted!",
-                                text: "Your file has been deleted.",
+                                title: "Terhapus!",
+                                text: "Data Berhasil dihapus!",
                                 icon: "success"
                             });
 
@@ -262,7 +239,7 @@
                             $(e.target).closest('form').submit();
 
                             // Reload the page after the form is submitted
-                            setTimeout(function(){
+                            setTimeout(function() {
                                 location.reload();
                             }, 1000);
                         }, delay);
@@ -297,6 +274,7 @@
                 });
             });
         })
+
         function previewImage() {
             const image = document.querySelector('#image');
             const imgPreview = document.querySelector('.img-preview');

@@ -48,6 +48,6 @@ class MemberController extends Controller
             'password' => Hash::make($request->password)
         ]);
 
-    return redirect()->route('beranda');
+        return redirect()->route('beranda');
     }
 }

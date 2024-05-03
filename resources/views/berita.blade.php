@@ -1,11 +1,5 @@
 @extends('template.main')
 @section('content')
-    {{-- <h1>halaman berita</h1>
-    @foreach ($beritas as $berita)
-        <h1>title: <a href="{{ route('berita.detail', ['slug' => $berita->slug]) }}">{{ $berita->title }}</a></h1> 
-        <p> {!! $berita->description !!}</p>
-        <img src="{{ asset('storage/berita-images/' . $berita->image) }}">
-    @endforeach --}}
     <style>
         *{
             margin: 0;
@@ -18,7 +12,7 @@
         .header{
             display: flex;
             align-items: center;
-            height: 40px;
+            height: 70px;
             padding: 15px;
             background: #432D77;
             box-shadow: 10px 10px 10px rgba(0,0,0,.1);
@@ -91,6 +85,85 @@
             width: 120px;
             left: 330px;
         }
+
+        .dropbtn {
+            background-color: transparent;
+            color: white;
+            font-weight: bold;
+            padding-right: 10px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            border-radius: 60px;
+            height: 40px;
+            width: fit-content;
+            /* border: 1px solid #cac9c9; */
+            /* box-shadow: 0px 0px 6px 0 rgba(0, 0, 0, .7); */
+
+        }
+        .login{
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .pemisah {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            padding-right: 40px;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            border-radius: 3px;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content button {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content button:hover {
+            background-color: #cac9c9;
+            border-radius: 3px;
+            width: 100%;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #cac9c9;
+            border-radius: 3px;
+            width: 100%;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #432D77;
+        }
+        
         .photo1 h1{
             position: absolute;
             font-size: 74px;
@@ -157,6 +230,65 @@
             max-width: 800px;
             border-image: fill 0 linear-gradient(#0001, #000);
         }
+
+        .isi1 .content1 .eye a{
+            position: relative;
+            top: 360px;
+            left: 30px;
+            text-decoration: none;
+        }
+
+        .isi1 .content1 .heart a{
+            position: relative;
+            top: 337.3px;
+            left: 80px;
+            text-decoration: none;
+        }
+
+        .isi1 .content1 p{
+            position: relative;
+            top: 313px;
+            left: 88%;
+        }
+
+        .isi1 .content1 h1{
+            color: white;
+            margin-top: 120px;
+        }
+
+
+        .isi1 .content1 h3{
+            color: white;
+            margin-left: 20px;
+        }
+
+        .isi1 .content2 h5{
+            width: 90%;
+            color: white;
+            margin-top: 100px;
+            margin-left: 30px;
+        }
+
+        .isi1 .content2 .eye a{
+            position: relative;
+            top: 10px;
+            left: 30px;
+            text-decoration: none;
+        }
+
+        .isi1 .content2 .heart a{
+            position: relative;
+            top: -13px;
+            left: 80px;
+            text-decoration: none;
+        }
+
+        .isi1 .content2 p{
+            position: relative;
+            left: 86%;
+            top: -38px;
+        }
+
         .isi1 .content2{
             background: url("assets/img/bambu.png");
             margin: 20px 20px 20px 0px;
@@ -260,6 +392,155 @@
             background: transparent;
             border-radius: 8px;
         }
+
+        .container10 .container1 .eye .bi-eye{
+            font-size: 18px;
+            margin-right: 5px;
+
+        }
+
+        .container10 .container1 .eye a{
+            font-size: 14px;
+            position: relative;
+            top: -28.7px;
+            left: 210px;
+            display: flex;
+            align-items: center;
+        }
+
+        .container10 .container1 .heart .bi-heart-fill{
+            font-size: 18px;
+            margin-right: 5px;
+        }
+
+        .container10 .container1 .heart a{
+            font-size: 14px;
+            position: relative;
+            top: -55px;
+            left: 270px;
+            display: flex;
+            align-items: center;
+            
+        }
+
+
+        .container10 .container1 p{
+            position: relative;
+            top: -82px; 
+            left: 570px;
+        }
+
+        .container10 .container2 .eye .bi-eye{
+            font-size: 18px;
+            margin-right: 5px;
+
+        }
+
+        .container10 .container2 .eye a{
+            font-size: 14px;
+            position: relative;
+            top: -28.7px;
+            left: 210px;
+            display: flex;
+            align-items: center;
+        }
+
+        .container10 .container2 .heart .bi-heart-fill{
+            font-size: 18px;
+            margin-right: 5px;
+        }
+
+        .container10 .container2 .heart a{
+            font-size: 14px;
+            position: relative;
+            top: -55px;
+            left: 270px;
+            display: flex;
+            align-items: center;
+            
+        }
+
+
+        .container10 .container2 p{
+            position: relative;
+            top: -82px; 
+            left: 570px;
+        }
+
+        .container10 .container3 .eye .bi-eye{
+            font-size: 18px;
+            margin-right: 5px;
+
+        }
+
+        .container10 .container3 .eye a{
+            font-size: 14px;
+            position: relative;
+            top: -28.7px;
+            left: 210px;
+            display: flex;
+            align-items: center;
+        }
+
+        .container10 .container3 .heart .bi-heart-fill{
+            font-size: 18px;
+            margin-right: 5px;
+        }
+
+        .container10 .container3 .heart a{
+            font-size: 14px;
+            position: relative;
+            top: -55px;
+            left: 270px;
+            display: flex;
+            align-items: center;
+            
+        }
+
+
+        .container10 .container3 p{
+            position: relative;
+            top: -82px; 
+            left: 570px;
+        }
+
+        .container10 .container4 .eye .bi-eye{
+            font-size: 18px;
+            margin-right: 5px;
+
+        }
+
+        .container10 .container4 .eye a{
+            font-size: 14px;
+            position: relative;
+            top: -28.7px;
+            left: 210px;
+            display: flex;
+            align-items: center;
+        }
+
+        .container10 .container4 .heart .bi-heart-fill{
+            font-size: 18px;
+            margin-right: 5px;
+        }
+
+        .container10 .container4 .heart a{
+            font-size: 14px;
+            position: relative;
+            top: -55px;
+            left: 270px;
+            display: flex;
+            align-items: center;
+            
+        }
+
+
+        .container10 .container4 p{
+            position: relative;
+            top: -82px; 
+            left: 570px;
+        }
+
         .container10 h3{
             margin-left: 20px;
             position: relative;
@@ -283,6 +564,59 @@
             width: 60%;
             background: transparent;
         }
+
+
+        .container12 .container20 .tag{
+            position: absolute;
+            font-size: 20px;
+            left: 65%;
+            border-left: 2px solid black;
+            height: 680px;
+            padding-left: 30px;   
+        }
+
+        .tag hr{
+            width: 400px;
+            margin-top: 16px;
+            margin-bottom: 16px;
+        }
+
+        .tag h5{
+            padding-bottom: 100px;
+            position: absolute;
+            left: 50%;
+            
+        }
+
+        .container12 .container20 .eye .bi-eye{
+            font-size: 18px;
+            margin-right: 5px;
+
+        }
+
+        .container12 .container20 .eye a{
+            font-size: 14px;
+            position: relative;
+            top: -28.7px;
+            left: 187px;
+            display: flex;
+            align-items: center;
+        }
+
+        .container12 .container20 .heart .bi-heart-fill{
+            font-size: 18px;
+            margin-right: 5px;
+        }
+
+        .container12 .container20 .heart a{
+            font-size: 14px;
+            position: relative;
+            top: -55px;
+            left: 240px;
+            display: flex;
+            align-items: center;
+        }
+
         .container12 .container21{
             margin-top: 20px;
             margin-left: 20px;
@@ -290,6 +624,36 @@
             width: 60%;
             background: transparent;
         }
+
+        .container12 .container21 .eye .bi-eye{
+            font-size: 18px;
+            margin-right: 5px;
+
+        }
+
+        .container12 .container21 .eye a{
+            font-size: 14px;
+            position: relative;
+            top: -28.7px;
+            left: 187px;
+            display: flex;
+            align-items: center;
+        }
+
+        .container12 .container21 .heart .bi-heart-fill{
+            font-size: 18px;
+            margin-right: 5px;
+        }
+
+        .container12 .container21 .heart a{
+            font-size: 14px;
+            position: relative;
+            top: -55px;
+            left: 240px;
+            display: flex;
+            align-items: center;
+        }
+
         .container12 .container22{
             margin-top: 20px;
             margin-left: 20px;
@@ -297,6 +661,36 @@
             width: 60%;
             background: transparent;
         }
+
+        .container12 .container22 .eye .bi-eye{
+            font-size: 18px;
+            margin-right: 5px;
+
+        }
+
+        .container12 .container22 .eye a{
+            font-size: 14px;
+            position: relative;
+            top: -28.7px;
+            left: 187px;
+            display: flex;
+            align-items: center;
+        }
+
+        .container12 .container22 .heart .bi-heart-fill{
+            font-size: 18px;
+            margin-right: 5px;
+        }
+
+        .container12 .container22 .heart a{
+            font-size: 14px;
+            position: relative;
+            top: -55px;
+            left: 240px;
+            display: flex;
+            align-items: center;
+        }
+
         .container12 .container23{
             margin-top: 20px;
             margin-left: 20px;
@@ -304,6 +698,36 @@
             width: 60%;
             background: transparent;
         }
+
+        .container12 .container23 .eye .bi-eye{
+            font-size: 18px;
+            margin-right: 5px;
+
+        }
+
+        .container12 .container23 .eye a{
+            font-size: 14px;
+            position: relative;
+            top: -28.7px;
+            left: 187px;
+            display: flex;
+            align-items: center;
+        }
+
+        .container12 .container23 .heart .bi-heart-fill{
+            font-size: 18px;
+            margin-right: 5px;
+        }
+
+        .container12 .container23 .heart a{
+            font-size: 14px;
+            position: relative;
+            top: -55px;
+            left: 240px;
+            display: flex;
+            align-items: center;
+        }
+
         .container12 .container24{
             margin-top: 20px;
             margin-left: 20px;
@@ -311,6 +735,36 @@
             width: 60%;
             background: transparent;
         }
+
+        .container12 .container24 .eye .bi-eye{
+            font-size: 18px;
+            margin-right: 5px;
+
+        }
+
+        .container12 .container24 .eye a{
+            font-size: 14px;
+            position: relative;
+            top: -28.7px;
+            left: 187px;
+            display: flex;
+            align-items: center;
+        }
+
+        .container12 .container24 .heart .bi-heart-fill{
+            font-size: 18px;
+            margin-right: 5px;
+        }
+
+        .container12 .container24 .heart a{
+            font-size: 14px;
+            position: relative;
+            top: -55px;
+            left: 240px;
+            display: flex;
+            align-items: center;
+        }
+
         .container12 .container25{
             margin-top: 20px;
             margin-left: 20px;
@@ -319,6 +773,36 @@
             width: 60%;
             background: transparent;
         }
+
+        .container12 .container25 .eye .bi-eye{
+            font-size: 18px;
+            margin-right: 5px;
+
+        }
+
+        .container12 .container25 .eye a{
+            font-size: 14px;
+            position: relative;
+            top: -28.7px;
+            left: 187px;
+            display: flex;
+            align-items: center;
+        }
+
+        .container12 .container25 .heart .bi-heart-fill{
+            font-size: 18px;
+            margin-right: 5px;
+        }
+
+        .container12 .container25 .heart a{
+            font-size: 14px;
+            position: relative;
+            top: -55px;
+            left: 240px;
+            display: flex;
+            align-items: center;
+        }
+
         .container12 a{
             position: absolute;
             font-size: 10px;
@@ -412,89 +896,156 @@
         <h1 class="berita-teratas">Berita teratas</h1>
     </div>
     <div class="isi1">
-            <div class="content1">
+        <div class="content1">
+            <section class="eye"><a href="" style="color: white;" ><l class="bi bi-eye" style="color: white;" ></l>502</a></section>
+            <section class="heart"><a href="" style="color: white;" ><l class="bi bi-heart-fill" style="color: #e11d48;"></l> 502</a></section>
+            <p style="color: white;" >3 hari lalu</p>
+            <h1>Sektor Perhotelan di Kalbar Terus Membaik pada 2023, Kata Ketua PHRI</h1>
+            <h3>Sekotor perhotelan di kalbar kini sedang naik karena banyak wisatawan asing yang berkunjung ke kalbar</h3>
+            
+        </div>
+        <div class="content2">
+            <h1>Crypto kian menjadi ladang tajir untuk usia muda</h1>
+            <h5>Cripto adalah salah satu digital money yang tidak menggunakan perantara pihak ketiga, Crypto semakin melunjak karena ia bisa di investasikan dalam jangka waktu panjang,salah satu koin kripto saja sudah menyentuh harga 1miliar perkoin dalam waktu 3 tahun. dan juga kini kripto jg semakin meraaja lelapada industri besar.</h5>
+            <section class="eye"><a href="" style="color: white;" ><l class="bi bi-eye" style="color: white;" ></l>502</a></section>
+            <section class="heart"><a href="" style="color: white;" ><l class="bi bi-heart-fill" style="color: #e11d48;"></l> 502</a></section>
+            <p style="color: white;" >3 hari lalu</p>
+        </div>
+</div>
+<div class="container10">
+    <div class="container1">
+        <img src="{{ asset('assets/img/botak.png') }}" alt="" width="30%" height="100%">
+        <a href=""><h1>Thanos menjabat sebagai presiden pada era 2024-kiamat</h1></a>
+        <a href=""><h3>Thanos adalah seorang abang abang bakso yang bercita cita untuk memusnakan setengah populasi dari alam semesta, apakah ia akan berhasil?</h3></a>
+        <section class="eye"><a href=""><l class="bi bi-eye"></l>502</a></section>
+        <section class="heart"><a href=""><l class="bi bi-heart-fill" style="color: #e11d48;"></l> 502</a></section>
+        <p>7 hari lalu</p>
+    </div>
+    <div class="container2">           
+        <img src="{{ asset('assets/img/botak.png') }}" alt="" width="30%" height="100%">
+        <a href=""><h1>Thanos menjabat sebagai presiden pada era 2024-kiamat</h1></a>
+        <a href=""><h3>Thanos adalah seorang abang abang bakso yang bercita cita untuk memusnakan setengah populasi dari alam semesta, apakah ia akan berhasil?</h3></a>
+        <section class="eye"><a href=""><l class="bi bi-eye"></l>502</a></section>
+        <section class="heart"><a href=""><l class="bi bi-heart-fill" style="color: #e11d48;"></l> 502</a></section>
+        <p>7 hari lalu</p>
+    </div>
+    <div class="container3">
+        <img src="{{ asset('assets/img/botak.png') }}" alt="" width="30%" height="100%">
+        <a href=""><h1>Thanos menjabat sebagai presiden pada era 2024-kiamat</h1></a>
+        <a href=""><h3>Thanos adalah seorang abang abang bakso yang bercita cita untuk memusnakan setengah populasi dari alam semesta, apakah ia akan berhasil?</h3></a>
+        <section class="eye"><a href=""><l class="bi bi-eye"></l>502</a></section>
+        <section class="heart"><a href=""><l class="bi bi-heart-fill" style="color: #e11d48;"></l> 502</a></section>
+        <p>7 hari lalu</p>
+    </div>
+    <div class="container4">
+        <img src="{{ asset('assets/img/botak.png') }}" alt="" width="30%" height="100%">
+        <a href=""><h1>Thanos menjabat sebagai presiden pada era 2024-kiamat</h1></a>
+        <a href=""><h3>Thanos adalah seorang abang abang bakso yang bercita cita untuk memusnakan setengah populasi dari alam semesta, apakah ia akan berhasil?</h3></a>
+        <section class="eye"><a href=""><l class="bi bi-eye"></l>502</a></section>
+        <section class="heart"><a href=""><l class="bi bi-heart-fill" style="color: #e11d48;"></l> 502</a></section>
+        <p>7 hari lalu</p>
+    </div>
+</div>
+<div class="berita-terbaru">
+    <h1>Berita Terbaru</h1>
+    <a href="">Selengkapnya</a>
+</div>
 
+
+<div class="container11">
+    <div class="container5">
+        <img src="{{ asset('assets/img/ceramah.png') }}" alt="" height="60%" width="100%" style="border-radius: 8px;">
+        <a href=""><h1>Sektor Perhotelan di Kalbar Terus Membaik pada 2023, Kata Ketua PHRI</h1></a>
+    </div>
+    <div class="container6">
+        <img src="{{ asset('assets/img/ceramah.png') }}" alt="" height="60%" width="100%" style="border-radius: 8px;">
+        <a href=""><h1>Sektor Perhotelan di Kalbar Terus Membaik pada 2023, Kata Ketua PHRI</h1></a>
+    </div>
+    <div class="container7">
+        <img src="{{ asset('assets/img/ceramah.png') }}" alt="" height="60%" width="100%" style="border-radius: 8px;">
+        <a href=""><h1>Sektor Perhotelan di Kalbar Terus Membaik pada 2023, Kata Ketua PHRI</h1></a>
+    </div>
+</div>
+<div class="berita-populer">
+    <h1>Berita Populer</h1>
+</div>
+<div class="container12">
+    <div class="container20">
+        <div class="tag">
+            <p style="font-weight: bolder; font-size: 30px; margin-bottom: 20px; ">Tag Terpopuler</p>
+            <p># Kojuliusnaikgaji</p>   
+            <h5>200m Berita</h5>
+            <hr>
+            <p># devonseveg</p>
+            <h5>200m Berita</h5>
+            <hr>
+            <p># endiansakit3bulan</p>
+            <h5>200m Berita</h5>
+            <hr>
+            <p># nikotokdibajaksawah</p>
+            <h5>200m Berita</h5>
+            <hr>
+            <p># wifimati</p>
+            <h5>200m Berita</h5>
+            <hr>
+            <p># devonvideo7</p>
+            <h5>200m Berita</h5>
+            <hr>
+            <p># gajibang</p>
+            <h5>200m Berita</h5>
+            <hr>
+            <p># jangandibaca</p>
+            <h5>200m Berita</h5>
+            <hr>
+            <p># helloworld</p>
+            <h5>200m Berita</h5>
+            <hr>
+            <p># quotesanakkoding</p>
+            <h5>200m Berita</h5>
+            <hr>
             </div>
-            <div class="content2">
-                <h1>Crypto kian menjadi ladang tajir untuk usia muda</h1>
-            </div>
+         
+        <img src="{{ asset('assets/img/ceramah.png') }}" alt="" height="100%" width="20%" style="border-radius: 8px; border: 2px solid black;">
+        <a href=""><h1>Kenaikan Pajak Hiburan Batal, Ketua PHRI Kalbar: Sangat Senang</h1></a>
+        <a href=""><h3>45 menit yang lalu</h3></a>
+        <section class="eye"><a href=""><l class="bi bi-eye"></l>502</a></section>
+        <section class="heart"><a href=""><l class="bi bi-heart-fill" style="color: #e11d48;"></l> 502</a></section>
     </div>
-    <div class="container10">
-        <div class="container1">
-            <img src="{{ asset('assets/img/botak.png') }}" alt="" width="30%" height="100%">
-            <a href=""><h1>Thanos menjabat sebagai presiden pada era 2024-kiamat</h1></a>
-            <a href=""><h3>Thanos adalah seorang abang abang bakso yang bercita cita untuk memusnakan setengah populasi dari alam semesta, apakah ia akan berhasil?</h3></a>
-        </div>
-        <div class="container2">           
-            <img src="{{ asset('assets/img/botak.png') }}" alt="" width="30%" height="100%">
-            <a href=""><h1>Thanos menjabat sebagai presiden pada era 2024-kiamat</h1></a>
-            <a href=""><h3>Thanos adalah seorang abang abang bakso yang bercita cita untuk memusnakan setengah populasi dari alam semesta, apakah ia akan berhasil?</h3></a>
-        </div>
-        <div class="container3">
-            <img src="{{ asset('assets/img/botak.png') }}" alt="" width="30%" height="100%">
-            <a href=""><h1>Thanos menjabat sebagai presiden pada era 2024-kiamat</h1></a>
-            <a href=""><h3>Thanos adalah seorang abang abang bakso yang bercita cita untuk memusnakan setengah populasi dari alam semesta, apakah ia akan berhasil?</h3></a>
-        </div>
-        <div class="container4">
-            <img src="{{ asset('assets/img/botak.png') }}" alt="" width="30%" height="100%">
-            <a href=""><h1>Thanos menjabat sebagai presiden pada era 2024-kiamat</h1></a>
-            <a href=""><h3>Thanos adalah seorang abang abang bakso yang bercita cita untuk memusnakan setengah populasi dari alam semesta, apakah ia akan berhasil?</h3></a>
-        </div>
+    <div class="container21">
+        <img src="{{ asset('assets/img/ceramah.png') }}" alt="" height="100%" width="20%" style="border-radius: 8px; border: 2px solid black;">
+        <a href=""><h1>Kenaikan Pajak Hiburan Batal, Ketua PHRI Kalbar: Sangat Senang</h1></a>
+        <a href=""><h3>45 menit yang lalu</h3></a>
+        <section class="eye"><a href=""><l class="bi bi-eye"></l>502</a></section>
+        <section class="heart"><a href=""><l class="bi bi-heart-fill" style="color: #e11d48;"></l> 502</a></section>
     </div>
-    <div class="berita-terbaru">
-        <h1>Berita Terbaru</h1>
-        <a href="">Selengkapnya</a>
+    <div class="container22">
+        <img src="{{ asset('assets/img/ceramah.png') }}" alt="" height="100%" width="20%" style="border-radius: 8px; border: 2px solid black;">
+        <a href=""><h1>Kenaikan Pajak Hiburan Batal, Ketua PHRI Kalbar: Sangat Senang</h1></a>
+        <a href=""><h3>45 menit yang lalu</h3></a>
+        <section class="eye"><a href=""><l class="bi bi-eye"></l>502</a></section>
+        <section class="heart"><a href=""><l class="bi bi-heart-fill" style="color: #e11d48;"></l> 502</a></section>
     </div>
-
-
-    <div class="container11">
-        <div class="container5">
-            <img src="{{ asset('assets/img/ceramah.png') }}" alt="" height="60%" width="100%" style="border-radius: 8px;">
-            <a href=""><h1>Sektor Perhotelan di Kalbar Terus Membaik pada 2023, Kata Ketua PHRI</h1></a>
-        </div>
-        <div class="container6">
-            <img src="{{ asset('assets/img/ceramah.png') }}" alt="" height="60%" width="100%" style="border-radius: 8px;">
-            <a href=""><h1>Sektor Perhotelan di Kalbar Terus Membaik pada 2023, Kata Ketua PHRI</h1></a>
-        </div>
-        <div class="container7">
-            <img src="{{ asset('assets/img/ceramah.png') }}" alt="" height="60%" width="100%" style="border-radius: 8px;">
-            <a href=""><h1>Sektor Perhotelan di Kalbar Terus Membaik pada 2023, Kata Ketua PHRI</h1></a>
-        </div>
+    <div class="container23">
+        <img src="{{ asset('assets/img/ceramah.png') }}" alt="" height="100%" width="20%" style="border-radius: 8px; border: 2px solid black;">
+        <a href=""><h1>Kenaikan Pajak Hiburan Batal, Ketua PHRI Kalbar: Sangat Senang</h1></a>
+        <a href=""><h3>45 menit yang lalu</h3></a>
+        <section class="eye"><a href=""><l class="bi bi-eye"></l>502</a></section>
+        <section class="heart"><a href=""><l class="bi bi-heart-fill" style="color: #e11d48;"></l> 502</a></section>
     </div>
-    <div class="berita-populer">
-        <h1>Berita Populer</h1>
+    <div class="container24">
+        <img src="{{ asset('assets/img/ceramah.png') }}" alt="" height="100%" width="20%" style="border-radius: 8px; border: 2px solid black;">
+        <a href=""><h1>Kenaikan Pajak Hiburan Batal, Ketua PHRI Kalbar: Sangat Senang</h1></a>
+        <a href=""><h3>45 menit yang lalu</h3></a>
+        <section class="eye"><a href=""><l class="bi bi-eye"></l>502</a></section>
+        <section class="heart"><a href=""><l class="bi bi-heart-fill" style="color: #e11d48;"></l> 502</a></section>
     </div>
-    <div class="container12">
-        <div class="container20">
-            <img src="{{ asset('assets/img/ceramah.png') }}" alt="" height="100%" width="20%" style="border-radius: 8px; border: 2px solid black;">
-            <a href=""><h1>Kenaikan Pajak Hiburan Batal, Ketua PHRI Kalbar: Sangat Senang</h1></a>
-            <a href=""><h3>45 menit yang lalu</h3></a>
-        </div>
-        <div class="container21">
-            <img src="{{ asset('assets/img/ceramah.png') }}" alt="" height="100%" width="20%" style="border-radius: 8px; border: 2px solid black;">
-            <a href=""><h1>Kenaikan Pajak Hiburan Batal, Ketua PHRI Kalbar: Sangat Senang</h1></a>
-            <a href=""><h3>45 menit yang lalu</h3></a>
-        </div>
-        <div class="container22">
-            <img src="{{ asset('assets/img/ceramah.png') }}" alt="" height="100%" width="20%" style="border-radius: 8px; border: 2px solid black;">
-            <a href=""><h1>Kenaikan Pajak Hiburan Batal, Ketua PHRI Kalbar: Sangat Senang</h1></a>
-            <a href=""><h3>45 menit yang lalu</h3></a>
-        </div>
-        <div class="container23">
-            <img src="{{ asset('assets/img/ceramah.png') }}" alt="" height="100%" width="20%" style="border-radius: 8px; border: 2px solid black;">
-            <a href=""><h1>Kenaikan Pajak Hiburan Batal, Ketua PHRI Kalbar: Sangat Senang</h1></a>
-            <a href=""><h3>45 menit yang lalu</h3></a>
-        </div>
-        <div class="container24">
-            <img src="{{ asset('assets/img/ceramah.png') }}" alt="" height="100%" width="20%" style="border-radius: 8px; border: 2px solid black;">
-            <a href=""><h1>Kenaikan Pajak Hiburan Batal, Ketua PHRI Kalbar: Sangat Senang</h1></a>
-            <a href=""><h3>45 menit yang lalu</h3></a>
-        </div>
-        <div class="container25">
-            <img src="{{ asset('assets/img/ceramah.png') }}" alt="" height="100%" width="20%" style="border-radius: 8px; border: 2px solid black;">
-            <a href=""><h1>Kenaikan Pajak Hiburan Batal, Ketua PHRI Kalbar: Sangat Senang</h1></a>
-            <a href=""><h3>45 menit yang lalu</h3></a>
-        </div>
+    <div class="container25">
+        <img src="{{ asset('assets/img/ceramah.png') }}" alt="" height="100%" width="20%" style="border-radius: 8px; border: 2px solid black;">
+        <a href=""><h1>Kenaikan Pajak Hiburan Batal, Ketua PHRI Kalbar: Sangat Senang</h1></a>
+        <a href=""><h3>45 menit yang lalu</h3></a>
+        <section class="eye"><a href=""><l class="bi bi-eye"></l>502</a></section>
+        <section class="heart"><a href=""><l class="bi bi-heart-fill" style="color: #e11d48;"></l> 502</a></section>
     </div>
+</div>
     @include('footer')
 @endsection

@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         
-        \App\Models\User::factory(1)->create();
+        // \App\Models\User::factory(1)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'endian',
             'username' => 'Admin2',
             'email' => 'admin2@gmail.com',
+            'image' => '2024-04-29-profile.png',
             'password' => Hash::make('12345') 
         ]);
     }

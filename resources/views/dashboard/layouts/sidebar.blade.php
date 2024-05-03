@@ -1,47 +1,77 @@
-<div class="sidebar border border-right col-md-3 col-lg-2 d-md-block bg-body-tertiary">
-    <div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="sidebarMenuLabel">Dashboard Admin</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
-        </div>
-            <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link  {{ Request:: is('/dashboard') ? 'active' : '' }}" aria-current="page" href="{{ route('dashboard.index') }}">
-                            Dashboard
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ Request:: is('/dashboard/berita') ? 'active' : '' }}" href="{{ route('dashboard.berita') }}">
-                            Berita
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ Request:: is('/dashboard/kemitraan') ? 'active' : '' }}" href="{{ route('dashboard.mitra') }}">
-                            List Mitra
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ Request:: is('/dashboard/member') ? 'active' : '' }}" href="{{ route('dashboard.member') }}">
-                            List Member PHRI
-                        </a>
-                    </li>
-                </ul>
-                
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-inner slimscroll">
+        <div id="sidebar-menu" class="sidebar-menu">
+            <ul>
+                <li class="sidebar-header">
+                    Admin Menu
+                </li>
+                <li class="{{ Request:: is('dashboard') ? 'active' : '' }}">
+                    <a href="{{ route('dashboard.index') }}"><i class="fa-solid fa-gauge"></i>
+                        <span> Dashboard </span> 
+                    </a>
+                </li>
+                <li class="submenu">
+                    <a href="javascript:void(0);"><i class="fa-solid fa-database"></i>
+                        <span> Master Data </span> <span class="menu-arrow"></span>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="{{ route('dashboard.jenis') }}" class="sidebar-link">Data Jenis Usaha</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('dashboard.klasifikasi') }}" class="sidebar-link">Data Klasifikasi Usaha</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="submenu">
+                    <a href="javascript:void(0);"><i class="fa-solid fa-notes-medical"></i>
+                        <span> 9 Benefit </span> <span class="menu-arrow"></span>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="{{ route('dashboard.jenis') }}" class="sidebar-link">Button Panic</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="{{ Request:: is('dashboard/berita') ? 'active' : '' }}">
+                    <a href="{{ route('dashboard.berita') }}"><i class="fa-solid fa-newspaper"></i>
+                        <span> Berita </span> 
+                    </a>
+                </li>
+                <li class="{{ Request:: is('dashboard/member') ? 'active' : '' }}">
+                    <a href="{{ route('dashboard.member') }}"><i class="fa-solid fa-users"></i>
+                        <span> Member PHRI </span> 
+                    </a>
+                </li>
+                <li class="{{ Request:: is('dashboard/kemitraan') ? 'active' : '' }}">
+                    <a href="{{ route('dashboard.mitra') }}"><i class="fa-solid fa-handshake"></i>
+                        <span> Mitra </span> 
+                    </a>
+                </li>
+            </ul>
+            <ul>
                 @auth('admin')
                     @if (auth()->guard('admin')->user()->is_superadmin)
-                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                        <span>Super Admin</span>
-                    </h6>
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link {{ Request:: is('dashboard/admin*') ? 'active' : '' }}" href="{{ route('dashboard.admin') }}">
-                                Admin
+                        <li class="sidebar-header">
+                            Super Admin Menu
+                        </li>
+                        <li class="submenu">
+                            <a href="javascript:void(0);"><i class="fa-solid fa-plus"></i>
+                                <span> Manajemen Data </span> <span class="menu-arrow"></span>
                             </a>
-                        </li>   
-                    </ul>
+                            <ul>
+                                <li>
+                                    <a href="{{ route('dashboard.admin') }}" class="sidebar-link">Admin</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('dashboard.superadmin.mitra') }}" class="sidebar-link">Mitra</a>
+                                </li>
+                            </ul>
+                        </li>
                     @endif
                 @endauth
-            </div>
+            </ul>
         </div>
     </div>
+</div>

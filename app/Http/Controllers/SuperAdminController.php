@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Admin;
+use App\Models\Mitra;
+use App\Models\Jenis_usaha;
 use Illuminate\Support\Facades\Hash;
 
 class SuperAdminController extends Controller
@@ -15,8 +17,9 @@ class SuperAdminController extends Controller
         if (!$admin || !$admin->is_superadmin) {
             abort(403);
         }
-        $admin = Admin::all();
-        return view('dashboard.admin.index', ['admins' => $admin]);
+        $admin = Admin::where('id', '!=', auth('admin')->id())->get();
+        $profile = Auth('admin')->user();
+        return view('dashboard.superadmin.admin.index', ['admins' => $admin, 'profile' => $profile]);
     }
     public function add_admin(Request $request)
     {
@@ -46,6 +49,45 @@ class SuperAdminController extends Controller
 
         Admin::destroy($data);
 
-        return redirect()->route('dashboard.admin');
+        return redirect()->route('dashboard.superadmin.admin');
+    }
+    public function mitra()
+    {
+        $profile = Auth('admin')->user();
+        $mitra = Mitra::orderBy('id', 'ASC')->get();
+        return view('dashboard.superadmin.mitra.index', ['profile' => $profile, 'jenis_usaha' => Jenis_usaha::all(), 'mitras' => $mitra]);
+    }
+    public function add_mitra(Request $request)
+    {
+        try{
+            // return ($request->all());
+            $request->validate([
+                'nama_pic' => 'required|max:255',
+                'no_hp' => 'required|max:15',
+                'jenis_usaha_id' => 'required',
+                'email' => 'required|email|unique:admins',
+            ]);
+    
+            $store = new Mitra;
+            $store->nama_pic = $request->nama_pic;
+            $store->no_hp = $request->no_hp;
+            $store->email = $request->email;
+            $store->jenis_usaha_id = $request->jenis_usaha_id;
+            $store->jenis_kerjasama = '-';
+            $store->nama_perusahaan = '-';
+            $store->save();
+
+            return ['status' => true, 'pesan' => 'Mitra Berhasil Ditambahkan'];
+        }catch(\Exception $e) {
+            return ['status' => false, 'error' => $e->getMessage()];
+        }
+    }
+    public function destroy_mitra(Mitra $id)
+    {
+        $data = Mitra::find($id);
+
+        Mitra::destroy($data);
+
+        return redirect()->route('dashboard.superadmin.mitra');
     }
 }
